@@ -2,7 +2,7 @@
 飲水地圖
 ========
 
-http://drinking.teia.tw/
+http://watermap.teia.tw/
 
 一個600ml的瓶裝水，需要耗費600ml的6~7倍水量製造它的塑膠瓶！在缺水的時代來臨時，別再讓塑膠瓶跟我們搶水資源了！
 
@@ -15,7 +15,7 @@ http://drinking.teia.tw/
 相關連結
 --------
 
-* [計劃網站](http://beta.hackfoldr.org/drinking-water/)
+* [計劃網站](http://watergo.teia.tw/)
 
 License
 -------
