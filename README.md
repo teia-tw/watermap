@@ -15,7 +15,7 @@ http://watermap.teia.tw/
 相關連結
 --------
 
-* [計劃網站](http://watergo.teia.tw/)
+* [Water Go! 計劃網站](http://watergo.teia.tw/)
 
 License
 -------
