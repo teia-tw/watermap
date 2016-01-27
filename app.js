@@ -459,9 +459,9 @@
     })
   }
 
-  function waterDropIcon () {
+  function waterDropIcon (color = '') {
     return L.icon({
-      iconUrl: 'waterdrop.png',
+      iconUrl: 'waterdrop' + color + '.png',
       iconSize: [29, 40],
       iconAnchor: [15, 40],
       popupAnchor: [1, -20]
@@ -475,9 +475,7 @@
         var l = L.layerGroup()
         data.features.forEach(feature => {
           var marker = L.marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
-            icon: waterDropIcon(),
-            fillColor: '#fa3',
-            fillOpacity: 0.2
+            icon: waterDropIcon('green'),
           }).bindPopup(feature.properties.comments[0].text)
           marker.addTo(l)
         })
