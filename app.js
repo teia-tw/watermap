@@ -468,6 +468,24 @@
     })
   }
 
+  function notesLayer () {
+    return function () {
+      var map = this
+      $.get('https://api.openstreetmap.org/api/0.6/notes/search.json?q=%E9%A3%B2%E6%B0%B4%E5%9C%B0%E5%9C%96', function (data, ok, ajax) {
+        var l = L.layerGroup()
+        data.features.forEach(feature => {
+          var marker = L.marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
+            icon: waterDropIcon(),
+            fillColor: '#fa3',
+            fillOpacity: 0.2
+          }).bindPopup(feature.properties.comments[0].text)
+          marker.addTo(l)
+        })
+        l.addTo(map)
+      })
+    }
+  }
+
   function drinkingWaterLayer () {
     return function () {
       var map = this
@@ -520,6 +538,7 @@
   map
     .addLayer(osmLayer())
     .on('load', drinkingWaterLayer())
+    .on('load', notesLayer())
     .on('load', locator.mapButton())
     .on('load', about.mapButton())
     .on('load', (function () {
