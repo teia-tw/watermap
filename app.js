@@ -469,6 +469,30 @@
   }
 
   function notesLayer () {
+    function displayNote (text) {
+      var v = {}
+      text.split('\n')
+        .filter(l => l.search('：') >= 0)
+        .map(l => l.split('：'))
+        .forEach(x => {
+          v[x[0]] = x[1]
+        })
+      return '<div>' +
+        '<div class="unverified ui label"><i class="info icon"></i>未驗證</div>' +
+        '<div class="name">' + v['名稱'] + '</div>' +
+        (v['溫度'] ? (
+          '<div class="water">' +
+            (v['溫度'].search('iced_water') >= 0 ? '<img src="iced.png"/>' : '') +
+            (v['溫度'].search('cold_water') >= 0 ? '<img src="cold.png"/>' : '') +
+            (v['溫度'].search('warm_water') >= 0 ? '<img src="warm.png"/>' : '') +
+            (v['溫度'].search('hot_water') >= 0  ? '<img src="hot.png"/>' : '') +
+          '</div>') : '') +
+        (v['說明'] ? '<div class="description">' + v['說明'] + '</div>' : '') +
+        (v['樓層'] ? '<div class="level">' + (v['樓層'] < 0 ? '地下 ' + -v['樓層'] : v['樓層']) + ' 樓' + '</div>' : '') +
+        (v['管理者'] ? '<div class="operator">管理者：' + v['管理者'].replace(/operator=/, '') + '</div>' : '') +
+        (v['機型'] ? '<div class="brand">機型：' + v['機型'].replace(/brand=/, '') + '</div>' : '') +
+        '</div>'
+    }
     return function () {
       var map = this
       $.get('https://api.openstreetmap.org/api/0.6/notes/search.json?q=%E9%A3%B2%E6%B0%B4%E5%9C%B0%E5%9C%96', function (data, ok, ajax) {
@@ -476,7 +500,7 @@
         data.features.forEach(feature => {
           var marker = L.marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
             icon: waterDropIcon('green'),
-          }).bindPopup(feature.properties.comments[0].text)
+          }).bindPopup(displayNote(feature.properties.comments[0].text))
           marker.addTo(l)
         })
         l.addTo(map)
