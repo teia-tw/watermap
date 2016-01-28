@@ -36,6 +36,7 @@
   })()
 
   var map = new L.Map('map')
+  var notes = notesLayer()
 
   var mapControl = (function () {
     var component = {}
@@ -303,6 +304,7 @@
         })
         $content.append($ok)
         modal.open($content)
+        notes.reload()
       })
     }
     return component
@@ -469,6 +471,8 @@
   }
 
   function notesLayer () {
+    var map
+    var layer
     function displayNote (text) {
       var v = {}
       text.split('\n')
@@ -493,19 +497,26 @@
         (v['機型'] ? '<div class="brand">機型：' + v['機型'].replace(/brand=/, '') + '</div>' : '') +
         '</div>'
     }
-    return function () {
-      var map = this
+    function draw () {
+      map = this
+      draw.reload()
+    }
+    draw.reload = function () {
+      if (layer === undefined) {
+        layer = L.layerGroup()
+      }
+      layer.clearLayers()
       $.get('https://api.openstreetmap.org/api/0.6/notes/search.json?q=%E9%A3%B2%E6%B0%B4%E5%9C%B0%E5%9C%96', function (data, ok, ajax) {
-        var l = L.layerGroup()
         data.features.forEach(feature => {
           var marker = L.marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
             icon: waterDropIcon('green'),
           }).bindPopup(displayNote(feature.properties.comments[0].text))
-          marker.addTo(l)
+          marker.addTo(layer)
         })
-        l.addTo(map)
+        layer.addTo(map)
       })
     }
+    return draw
   }
 
   function drinkingWaterLayer () {
@@ -560,7 +571,7 @@
   map
     .addLayer(osmLayer())
     .on('load', drinkingWaterLayer())
-    .on('load', notesLayer())
+    .on('load', notes)
     .on('load', locator.mapButton())
     .on('load', about.mapButton())
     .on('load', (function () {
