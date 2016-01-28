@@ -507,12 +507,14 @@
       }
       layer.clearLayers()
       $.get('https://api.openstreetmap.org/api/0.6/notes/search.json?q=%E9%A3%B2%E6%B0%B4%E5%9C%B0%E5%9C%96', function (data, ok, ajax) {
-        data.features.forEach(feature => {
-          var marker = L.marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
-            icon: waterDropIcon('green'),
-          }).bindPopup(displayNote(feature.properties.comments[0].text))
-          marker.addTo(layer)
-        })
+        data.features
+          .filter(feature => feature.properties.status === 'open')
+          .forEach(feature => {
+            var marker = L.marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
+              icon: waterDropIcon('green'),
+            }).bindPopup(displayNote(feature.properties.comments[0].text))
+            marker.addTo(layer)
+          })
         layer.addTo(map)
       })
     }
