@@ -473,7 +473,8 @@
   function notesLayer () {
     var map
     var layer
-    function displayNote (text) {
+    function displayNote (feature) {
+      var text = feature.properties.comments[0].text
       var v = {}
       text.split('\n')
         .filter(l => l.search('：') >= 0)
@@ -483,6 +484,7 @@
         })
       return '<div>' +
         '<div class="unverified ui label"><i class="info icon"></i>未驗證</div>' +
+        '<div><a href="https://www.openstreetmap.org/note/' + feature.properties.id + '" target="_blank">這個資訊正確嗎？</a></div>' +
         '<div class="name">' + v['名稱'] + '</div>' +
         (v['溫度'] ? (
           '<div class="water">' +
@@ -512,7 +514,7 @@
           .forEach(feature => {
             var marker = L.marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
               icon: waterDropIcon('green'),
-            }).bindPopup(displayNote(feature.properties.comments[0].text))
+            }).bindPopup(displayNote(feature))
             marker.addTo(layer)
           })
         layer.addTo(map)
