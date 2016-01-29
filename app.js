@@ -480,9 +480,9 @@
       var text = feature.properties.comments[0].text
       var v = {}
       text.split('\n')
-        .filter(l => l.search('：') >= 0)
-        .map(l => l.split('：'))
-        .forEach(x => {
+        .filter(function (l) { return l.search('：') >= 0 })
+        .map(function (l) { return l.split('：') })
+        .forEach(function (x) {
           v[x[0]] = x[1]
         })
       return '<div>' +
@@ -513,8 +513,8 @@
       layer.clearLayers()
       $.get('https://api.openstreetmap.org/api/0.6/notes/search.json?q=%E9%A3%B2%E6%B0%B4%E5%9C%B0%E5%9C%96', function (data, ok, ajax) {
         data.features
-          .filter(feature => feature.properties.status === 'open')
-          .forEach(feature => {
+          .filter(function (feature) { return feature.properties.status === 'open' })
+          .forEach(function (feature) {
             var marker = L.marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
               icon: waterDropIcon('green'),
             }).bindPopup(displayNote(feature))
