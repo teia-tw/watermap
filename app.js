@@ -461,7 +461,10 @@
     })
   }
 
-  function waterDropIcon (color = '') {
+  function waterDropIcon (color) {
+    if (color === undefined) {
+      color = ''
+    }
     return L.icon({
       iconUrl: 'waterdrop' + color + '.png',
       iconSize: [29, 40],
