@@ -350,7 +350,7 @@
       }
       if (button === undefined) {
         button = L.control.locate({
-          icon: 'fa fa-map-marker',
+          icon: 'fa fa-location-arrow',
           iconLoading: 'fa fa-spinner fa-spin',
           drawCircle: false,
           follow: true,
