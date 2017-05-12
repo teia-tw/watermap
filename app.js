@@ -295,7 +295,7 @@
         '精確：' + $fieldPrecise.find('input').map(function () {
           return $(this).prop('checked') ? 'yes' : 'no'
         }).toArray().join(' ')
-      $.post('http://api.openstreetmap.org/api/0.6/notes.json?lat=' + latLng.lat + '&lon=' + latLng.lng + '&text=' + encodeURIComponent(noteText), '', function (data, ok, ajax) {
+      $.post('https://api.openstreetmap.org/api/0.6/notes.json?lat=' + latLng.lat + '&lon=' + latLng.lng + '&text=' + encodeURIComponent(noteText), '', function (data, ok, ajax) {
         loading.close()
         var $content = $('<form class="app add-station ui form"><h4>資料已上傳至開放街圖</h4><p><a href="https://www.openstreetmap.org/#map=18/' + data.geometry.coordinates[1] + '/' + data.geometry.coordinates[0] + '" target="_blank">開放街圖</a>是自由而且開源的全球地圖，由像你一樣的使用者所繪製。如果你願意協助編輯<a href="https://www.openstreetmap.org/note/' + data.properties.id + '" target="_blank">剛才新增的飲水點資料</a>，可參考開放街圖社群所提供的 <a href="https://osmtw.hackpad.com/Note-5FCtyE3QsJE" target="_blank">Note 編修說明書</a>。</p></form>')
         var $ok = $('<button class="ui primary button">好</button>')
@@ -385,15 +385,15 @@
     var $content = $('<div class="app about text"><p>一個600ml的瓶裝水，需要耗費600ml的6~7倍水量製造它的塑膠瓶！在缺水的時代來臨時，別再讓塑膠瓶跟我們搶水資源了！</p>' +
       '<p>自備環保杯是個絕佳的選擇，但是喝完自備的水後怎麼辦？</p>' +
       '<p>從現在開始，我們要讓帶環保杯的朋友，可以快速的找到補水地點，讓大家隨心所欲的喝水保健康。</p>' +
-      '<p>此外，<a href="http://teia.tw/" target="_blank">台灣環境資訊協會</a>懇請大家，少喝瓶裝水，努力減少塑膠瓶及瓶蓋等海洋垃圾，減少海鳥、海龜、鯨豚…等海洋生物吞食這些塑膠垃圾而痛苦至死。您的努力，也將是他們活命的機會！</p>' +
+      '<p>此外，<a href="https://teia.tw/" target="_blank">台灣環境資訊協會</a>懇請大家，少喝瓶裝水，努力減少塑膠瓶及瓶蓋等海洋垃圾，減少海鳥、海龜、鯨豚…等海洋生物吞食這些塑膠垃圾而痛苦至死。您的努力，也將是他們活命的機會！</p>' +
       '<h4>使用說明</h4>' +
       '<ul><li>點選「顯示我的位置」可以把地圖捲動到你的所在地。</li>' +
       '<li>如果你知道這個地點有飲水機，但地圖上沒有，可以（在手機上）長按或（在電腦上）右鍵點擊該處，提供飲水點資料。</li>' +
       '<li>如果你有<a href="https://www.openstreetmap.org/" target="_blank">開放街圖</a>的帳號，歡迎參考這份<a href="https://docs.google.com/document/d/1by9-SqfJ6qvu0dGER4E63bKsvGp3LhoqK86XFHHM_JI/edit?usp=sharing" target="_blank">說明</a>，一起編輯飲水地圖。請見<a href="notes.html" target="_blank">飲水點資料列表</a>。</li>' +
       '</ul>' +
       '<h4>關於本計劃</h4>' +
-      '<p>本計劃由<a href="http://teia.tw/" target="_blank">台灣環境資訊協會</a>發起，感謝<a href="https://www.openstreetmap.org/" target="_blank">開放街圖</a>與<a href="http://openstreetmap.tw/" target="_blank">台灣開放街圖社群</a>提供資料庫與技術支援。</p>' +
-      '<p><a href="http://watergo.teia.tw/" target="_blank">計劃網站</a></p>' +
+      '<p>本計劃由<a href="https://teia.tw/" target="_blank">台灣環境資訊協會</a>發起，感謝<a href="https://www.openstreetmap.org/" target="_blank">開放街圖</a>與<a href="https://openstreetmap.tw/" target="_blank">台灣開放街圖社群</a>提供資料庫與技術支援。</p>' +
+      '<p><a href="https://watergo.teia.tw/" target="_blank">計劃網站</a></p>' +
       '<p><a href="https://e-info.neticrm.tw/civicrm/contribute/transact?reset=1&id=9" target="_blank">捐款給台灣環境資訊協會</a></p>' +
       '<p><a href="https://ocf.neticrm.tw/civicrm/contribute/transact?reset=1&id=16" target="_blank">捐款給台灣開放街圖社群</a></p>' +
       '</div>')
@@ -453,8 +453,8 @@
   })(locator, modal)
 
   function osmLayer () {
-    var attr_osm = '地圖資料 &copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
-    return new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    var attr_osm = '地圖資料 &copy; <a href="https://osm.org/copyright">OpenStreetMap</a>'
+    return new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       opacity: 0.7,
       maxZoom: 18,
       attribution: attr_osm

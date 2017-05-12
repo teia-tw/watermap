@@ -100,7 +100,7 @@ L.LatLngBounds.prototype.toOverpassBBoxString = function (){
 L.OverPassLayer = L.FeatureGroup.extend({
   options: {
     minzoom: 15,
-    endpoint: "http://overpass.nchc.org.tw/api/",
+    endpoint: "https://overpass.nchc.org.tw/api/",
     query: "(node(BBOX)[organic];node(BBOX)[second_hand];);out qt;",
     callback: function(data) {
       for(var i = 0; i < data.elements.length; i++) {
@@ -142,7 +142,7 @@ L.OverPassLayer = L.FeatureGroup.extend({
 
   _poiInfo: function(tags,id) {
     var link = document.createElement("a");
-    link.href = "http://www.openstreetmap.org/edit?editor=id&node=" + id;
+    link.href = "https://www.openstreetmap.org/edit?editor=id&node=" + id;
     link.appendChild(document.createTextNode("Edit this entry in iD"));
     var table = document.createElement('table');
     for (var key in tags){
@@ -191,7 +191,7 @@ L.OverPassLayer = L.FeatureGroup.extend({
         var bottom = Math.round(this.tile2lat(y+1,requestZoomLevel)*1000000)/1000000;
         //console.log(left+"\t"+bottom+"\t"+right+"\t"+top);
         //this.addBBox(left,bottom,right,top);
-        //console.log("http://osm.org?bbox="+left+","+bottom+","+right+","+top);
+        //console.log("https://osm.org?bbox="+left+","+bottom+","+right+","+top);
         result.push( new L.LatLngBounds(new L.LatLng(bottom, left),new L.LatLng(top, right)));
       }
     }
