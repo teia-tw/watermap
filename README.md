@@ -17,6 +17,15 @@ http://watermap.teia.tw/
 
 * [Water Go! 計劃網站](http://watergo.teia.tw/)
 
+Deploy on GitHub
+----------------
+
+* Just push to `gh-pages` branch to a repository.
+* [Geolocation needs HTTPS](https://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features).  You can setup this with CloudFlare Flexible SSL:
+  - Add the site to CloudFlare.
+  - Enable Flexible SSL for the domain.
+  - Add a *Always use SSL* page rule to the URL.
+
 License
 -------
 
