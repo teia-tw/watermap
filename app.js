@@ -382,7 +382,7 @@
 
   var about = (function (locator, modal) {
     var component = {}
-    var $content = $('<div><div class="depr-announce">環境資訊協會原先發起的WaterGo專案及相關的飲水地圖維護已於2019/8/31停止(參見<a href="https://www.facebook.com/groups/1255977671181394/permalink/2245559418889876/">公告</a>)，如您仍對參與飲水地圖有興趣，可至臉書<a href="https://www.facebook.com/groups/1255977671181394">飲水地圖</a>社圖一同討論</div><hr/><div class="app about text"><p>一個600ml的瓶裝水，需要耗費600ml的6~7倍水量製造它的塑膠瓶！在缺水的時代來臨時，別再讓塑膠瓶跟我們搶水資源了！</p>' +
+    var $content = $('<div><div class="depr-announce">台灣環境資訊協會原先發起的WaterGo專案及相關的飲水地圖維護已於2019/8/31停止(參見<a href="https://www.facebook.com/groups/1255977671181394/permalink/2245559418889876/">公告</a>)，如您仍對參與飲水地圖有興趣，可至臉書<a href="https://www.facebook.com/groups/1255977671181394">飲水地圖</a>社圖一同討論</div><hr/><div class="app about text"><p>一個600ml的瓶裝水，需要耗費600ml的6~7倍水量製造它的塑膠瓶！在缺水的時代來臨時，別再讓塑膠瓶跟我們搶水資源了！</p>' +
       '<p>自備環保杯是個絕佳的選擇，但是喝完自備的水後怎麼辦？</p>' +
       '<p>從現在開始，我們要讓帶環保杯的朋友，可以快速的找到補水地點，讓大家隨心所欲的喝水保健康。</p>' +
       '<p>此外，<a href="https://teia.tw/" target="_blank">台灣環境資訊協會</a>懇請大家，少喝瓶裝水，努力減少塑膠瓶及瓶蓋等海洋垃圾，減少海鳥、海龜、鯨豚…等海洋生物吞食這些塑膠垃圾而痛苦至死。您的努力，也將是他們活命的機會！</p>' +
